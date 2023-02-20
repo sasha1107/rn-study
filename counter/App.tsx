@@ -1,16 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [cnt, setCnt] = useState<number>(0);
+
+  const [lotto, setLotto] = useState<number[]>([]);
+
+  function makeLotto() {
+    let lnumber:number[] = [];
+    let rnumber:number = 0;
+
+    let lottos = [];
+    let a  = 0;
+    for (let i = 1; i <= 45; i++) {
+      lottos.push(i);
+    }
+    for (let i = 0; i < 45; i++) {
+      rnumber = ~~(Math.random() * 45);
+      a = lottos[i];
+      lottos[i] = lottos[rnumber];
+      lottos[rnumber] = a;
+    }
+    console.log(lottos);
+    for (let i = 0; i < 6; i++) {
+      lnumber.push(lottos[i]);
+    }
+    setLotto(lnumber);
+  }
+
+  useEffect(() => {
+    makeLotto()  
+  }, [])
 
   return (
     <View style={styles.container}>
-      <Text style={styles.assa}>Open up App.tsx to start working on your app!우하하</Text>
-      <Text style={styles.cnt}>{cnt}</Text>
-      <Button title="더하기" onPress={() => setCnt(cnt + 1)}></Button>
-      <Button title="빼기" onPress={() => setCnt(cnt - 1)}></Button>
+      <Text style={{marginBottom:100,}}>로또 앱</Text>
+      <Button title='로또 번호 생성' onPress={()=> makeLotto()}></Button>
+      <Text style={{fontSize: 25,}}>{lotto.toLocaleString()}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -24,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   assa: {
-    color: 'pink',
+    color: 'salmon',
   },
   cnt: {
     fontSize: 50,
