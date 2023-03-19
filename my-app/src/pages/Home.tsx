@@ -2,12 +2,26 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 
 export function HomeScreen({ navigation, route }: { navigation: any; route: any }) {
+    const headerStyle = () => {
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: 'blue'
+            },
+            headerTintColor: 'yellow',
+            headerTitleStyles: {
+                fontWeight: 'bold',
+                color: 'green'
+            }
+        })
+    }
     React.useEffect(() => {
         if (route.params?.post) {
             // Post updated, do something with `route.params.post`
             // For example, send the post to the server
         }
     }, [route.params?.post]);
+    
+    headerStyle();
     return (
         <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
