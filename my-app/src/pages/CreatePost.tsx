@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, TextInput } from 'react-native';
 
-export function CreatePostScreen({
+export default function CreatePostScreen({
     navigation,
     route,
 }: {

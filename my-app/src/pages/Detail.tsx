@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 
-export function DetailsScreen({ route, navigation }: { navigation: any; route: any }) {
+export default function DetailsScreen({ route, navigation }: { navigation: any; route: any }) {
     const { itemId, otherParam } = route.params;
 
     return (
